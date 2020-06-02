@@ -7,10 +7,7 @@
 //
 
 import UIKit
-
-//MapKit frameworkをインポートする
 import MapKit
-//現在地取得用
 import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
@@ -37,16 +34,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 break
            
             }
+            mapView.showsUserLocation = true
         }
-        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]) {
-            let lonStr = (locations.last?.coordinate.longitude.description)!
-            let latStr = (locations.last?.coordinate.latitude.description)!
-            
-            print("lon :" + lonStr)
-            print("lat :" + latStr)
-        }
+        initMap()
+       
         
         
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]) {
+        let lonStr = (locations.last?.coordinate.longitude.description)!
+        let latStr = (locations.last?.coordinate.latitude.description)!
+        print("lon : " + lonStr)
+        print("lat : " + latStr)
+        
+    }
+    
+    func initMap() {
+        var region:MKCoordinateRegion = mapView.region
+        region.span.latitudeDelta = 0.1
+        region.span.longitudeDelta = 0.1
+        mapView.setRegion(region, animated: true)
+        
+        //現在位置表示の有効化
+        mapView.showsUserLocation = true
+        //現在位置設定（デバイスの動きとしてこの時の一回だけ中心位置が現在位置で更新される
+        mapView.userTrackingMode = .follow
     }
 
 
