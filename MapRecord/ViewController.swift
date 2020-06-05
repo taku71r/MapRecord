@@ -41,13 +41,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         
     }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]) {
-        let lonStr = (locations.last?.coordinate.longitude.description)!
-        let latStr = (locations.last?.coordinate.latitude.description)!
-        print("lon : " + lonStr)
-        print("lat : " + latStr)
-        
-    }
+    
     
     func initMap() {
         var region:MKCoordinateRegion = mapView.region
