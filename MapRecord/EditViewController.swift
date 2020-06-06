@@ -15,6 +15,7 @@ class EditViewController: UIViewController, MKMapViewDelegate, UIGestureRecogniz
     @IBOutlet var mapView: MKMapView!
     var locManager:CLLocationManager!
     @IBOutlet var longPressGesRec: UILongPressGestureRecognizer!
+    var pointAno: MKPointAnnotation = MKPointAnnotation()
     
 
     override func viewDidLoad() {
@@ -45,10 +46,10 @@ class EditViewController: UIViewController, MKMapViewDelegate, UIGestureRecogniz
         else if sender.state == .ended {
             let tapPoint = sender.location(in: view)
             let center = mapView.convert(tapPoint, toCoordinateFrom: mapView)
-            let lonStr = center.longitude.description
-            let latStr = center.latitude.description
-            print("lon : " + lonStr)
-            print("lat : " + latStr)
+           
+            
+            pointAno.coordinate = center
+            mapView.addAnnotation(pointAno)
         }
     }
     
