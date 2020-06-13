@@ -13,13 +13,36 @@ import CoreLocation
 class RecordViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet var mapView: MKMapView!
+    var locManager: CLLocationManager!
+    
+    var timer: Timer!
+    var latArray = [0]
+    var longArray = [0]
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         initMap()
+        self.start()
     }
+    func start() {
+    //タイマーを動かす
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.recordPoint), userInfo: nil, repeats: true)
+    timer.fire()
+    }
+    
+    @objc func recordPoint(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]) {
+        let lonStr = (locations.last?.coordinate.longitude.description)!
+        let latStr = (locations.last?.coordinate.latitude.description)!
+        print("lon : " + lonStr)
+        print("lat : " + latStr)
+    }
+    
+    
+    
     func initMap() {
     var region:MKCoordinateRegion = mapView.region
     region.span.latitudeDelta = 0.1

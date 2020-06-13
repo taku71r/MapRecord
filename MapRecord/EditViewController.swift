@@ -24,6 +24,7 @@ class EditViewController: UIViewController, MKMapViewDelegate, UIGestureRecogniz
         // Do any additional setup after loading the view.
         initMap()
         
+        
     }
     func initMap() {
        var region:MKCoordinateRegion = mapView.region

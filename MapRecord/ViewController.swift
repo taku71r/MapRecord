@@ -15,6 +15,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet var mapView: MKMapView!
     var locManager: CLLocationManager!
+    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +44,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]) {
-        let lonStr = (locations.last?.coordinate.longitude.description)!
-        let latStr = (locations.last?.coordinate.latitude.description)!
-        print("lon : " + lonStr)
-        print("lat : " + latStr)
-        
     }
     
     func initMap() {
