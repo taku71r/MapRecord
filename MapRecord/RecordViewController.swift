@@ -31,7 +31,7 @@ class RecordViewController: UIViewController, MKMapViewDelegate {
     func start() {
     //タイマーを動かす
         timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.recordPoint), userInfo: nil, repeats: true)
-    timer.fire()
+        timer.fire()
     }
     
     @objc func recordPoint(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]) {
