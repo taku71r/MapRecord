@@ -10,14 +10,16 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class RecordViewController: UIViewController, MKMapViewDelegate {
+class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet var mapView: MKMapView!
     var locManager: CLLocationManager!
-    
-    var timer: Timer!
-    var latArray = [0]
-    var longArray = [0]
+    var lonArray: [Double] = [0]
+    var latArray: [Double] = [0]
+    var colorNumber = 1
+    @IBOutlet var label : UILabel!
+    //var lon: Double = 0
+    //var lat: Double = 0
     
     
 
@@ -25,23 +27,77 @@ class RecordViewController: UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        locManager = CLLocationManager()
+        locManager.delegate = self
+        mapView.delegate = self
+        
         initMap()
-        self.start()
-    }
-    func start() {
-    //タイマーを動かす
-        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.recordPoint), userInfo: nil, repeats: true)
-        timer.fire()
-    }
-    
-    @objc func recordPoint(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]) {
-        let lonStr = (locations.last?.coordinate.longitude.description)!
-        let latStr = (locations.last?.coordinate.latitude.description)!
-        print("lon : " + lonStr)
-        print("lat : " + latStr)
+        
+        //self.start()
+        locManager.startUpdatingLocation()
+        
+       
     }
     
     
+   
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]) {
+        //決められた間隔ごとに現在地を取得
+            let lon = (locations.last?.coordinate.longitude)!
+            let lat = (locations.last?.coordinate.latitude)!
+            
+            //それぞれ配列に追加していく
+            lonArray.append(lon)
+            latArray.append(lat)
+            //配列の現在の個数をarrayNumberで表す（-1した数にする）
+            let arrayNumber = lonArray.count - 1
+            
+            //確認用
+            print(lon)
+            print(lat)
+            print(lonArray)
+            print(arrayNumber)
+            
+            //現在の座標データをcoordinate1に、一個前の座標データをcoordinate2にする
+            if arrayNumber > 1 {
+                let coordinate1 = CLLocationCoordinate2D(latitude: latArray[arrayNumber], longitude: lonArray[arrayNumber])
+                let coordinate2 = CLLocationCoordinate2D(latitude: latArray[arrayNumber - 1], longitude: lonArray[arrayNumber - 1])
+                //polylineを引くcoordinatesを設定する。
+                let coordinates = [coordinate1, coordinate2]
+                let PolyLine: MKPolyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
+                DispatchQueue.main.async {
+                    self.mapView.addOverlay(PolyLine)
+                }
+                
+                //ここに書く必要はない
+                mapView.showsUserLocation = true
+                
+                mapView.userTrackingMode = .follow
+                
+            }
+        }
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let polyline = overlay as? MKPolyline {
+            let polylineRenderer = MKPolylineRenderer(polyline: polyline)
+            if colorNumber == 0 {
+                polylineRenderer.strokeColor = .blue
+            } else if colorNumber == 1 {
+                polylineRenderer.strokeColor = .red
+            } else if colorNumber == 2 {
+                polylineRenderer.strokeColor = .green
+            } else if colorNumber == 3 {
+                polylineRenderer.strokeColor = .gray
+            }
+            
+            polylineRenderer.lineWidth = 10.0
+            return polylineRenderer
+        }
+        return MKOverlayRenderer()
+    }
+
+    
+   
     
     func initMap() {
     var region:MKCoordinateRegion = mapView.region
@@ -53,6 +109,23 @@ class RecordViewController: UIViewController, MKMapViewDelegate {
     mapView.showsUserLocation = true
     //現在位置設定（デバイスの動きとしてこの時の一回だけ中心位置が現在位置で更新される
     mapView.userTrackingMode = .follow
+    }
+    
+    @IBAction func blueButtonTapped() {
+        colorNumber = 0
+        label.text = "選択中の色：青"
+    }
+    @IBAction func redButtonTapped() {
+        colorNumber = 1
+        label.text = "選択中の色：赤"
+    }
+    @IBAction func greenButtonTapped() {
+        colorNumber = 2
+        label.text = "選択中の色：緑"
+    }
+    @IBAction func grayButtonTapped() {
+        colorNumber = 3
+        label.text = "選択中の色：グレー"
     }
     
 
