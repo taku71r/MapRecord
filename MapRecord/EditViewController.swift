@@ -35,7 +35,7 @@ class EditViewController: UIViewController, MKMapViewDelegate, UIGestureRecogniz
        //現在位置表示の有効化
        mapView.showsUserLocation = true
        //現在位置設定（デバイスの動きとしてこの時の一回だけ中心位置が現在位置で更新される
-        mapView.userTrackingMode = .follow
+       mapView.userTrackingMode = .follow
        
        }
     @IBAction func mapViewDidLongPress(_ sender: UILongPressGestureRecognizer) {
@@ -47,7 +47,7 @@ class EditViewController: UIViewController, MKMapViewDelegate, UIGestureRecogniz
         else if sender.state == .ended {
             let tapPoint = sender.location(in: view)
             let center = mapView.convert(tapPoint, toCoordinateFrom: mapView)
-           
+            
             
             pointAno.coordinate = center
             mapView.addAnnotation(pointAno)

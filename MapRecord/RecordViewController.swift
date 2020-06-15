@@ -54,10 +54,10 @@ class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             let arrayNumber = lonArray.count - 1
             
             //確認用
-            print(lon)
-            print(lat)
+            //print(lon)
+            //print(lat)
             print(lonArray)
-            print(arrayNumber)
+            //print(arrayNumber)
             
             //現在の座標データをcoordinate1に、一個前の座標データをcoordinate2にする
             if arrayNumber > 1 {
@@ -70,8 +70,7 @@ class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                     self.mapView.addOverlay(PolyLine)
                 }
                 
-                //ここに書く必要はない
-                mapView.showsUserLocation = true
+                
                 
                 mapView.userTrackingMode = .follow
                 
@@ -126,6 +125,9 @@ class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     @IBAction func grayButtonTapped() {
         colorNumber = 3
         label.text = "選択中の色：グレー"
+    }
+    @IBAction func stopUpdating() {
+        locManager.stopUpdatingLocation()
     }
     
 
