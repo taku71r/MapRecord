@@ -32,10 +32,6 @@ class EditViewController: UIViewController, MKMapViewDelegate, UIGestureRecogniz
        region.span.longitudeDelta = 0.1
        mapView.setRegion(region, animated: true)
        
-       //現在位置表示の有効化
-       mapView.showsUserLocation = true
-       //現在位置設定（デバイスの動きとしてこの時の一回だけ中心位置が現在位置で更新される
-       mapView.userTrackingMode = .follow
        
        }
     @IBAction func mapViewDidLongPress(_ sender: UILongPressGestureRecognizer) {

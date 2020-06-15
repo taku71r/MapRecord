@@ -57,6 +57,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         //現在位置設定（デバイスの動きとしてこの時の一回だけ中心位置が現在位置で更新される
         mapView.userTrackingMode = .follow
     }
+    @IBAction func back(sender: UIStoryboardSegue) {
+        
+    }
 
 
 }

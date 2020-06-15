@@ -29,9 +29,6 @@
                                 <state key="normal" title="スタート">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
-                                <connections>
-                                    <segue destination="RPL-gm-wn2" kind="presentation" modalPresentationStyle="fullScreen" id="6Dh-gz-skr"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ホーム" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfU-e3-XPZ">
                                 <rect key="frame" x="157" y="59" width="100" height="30"/>
@@ -217,6 +214,9 @@
                                 <state key="normal" title="終了">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <segue destination="5og-wm-3OP" kind="unwind" unwindAction="backWithSender:" id="yTV-ch-bCy"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -240,6 +240,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="quW-g2-sf4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="5og-wm-3OP" userLabel="Exit" sceneMemberID="exit"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Ddn-3P-5jG">
                     <connections>
                         <action selector="mapViewDidLongPress:" destination="cQP-TT-ptf" id="ghJ-LK-dMP"/>
