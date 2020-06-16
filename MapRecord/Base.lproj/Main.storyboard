@@ -29,6 +29,9 @@
                                 <state key="normal" title="スタート">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <segue destination="RPL-gm-wn2" kind="presentation" id="I86-Tz-HUm"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ホーム" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfU-e3-XPZ">
                                 <rect key="frame" x="157" y="59" width="100" height="30"/>
@@ -67,11 +70,11 @@
             <objects>
                 <viewController id="RPL-gm-wn2" customClass="RecordViewController" customModule="MapRecord" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K2K-yN-IHH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="計測中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcc-hI-jYI">
-                                <rect key="frame" x="157" y="59" width="100" height="30"/>
+                                <rect key="frame" x="157" y="15" width="100" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Vw8-AW-x3l"/>
                                 </constraints>
@@ -80,10 +83,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Uh2-QB-ryW">
-                                <rect key="frame" x="0.0" y="104" width="414" height="548"/>
+                                <rect key="frame" x="0.0" y="60" width="414" height="538"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1O7-Y7-t5A">
-                                <rect key="frame" x="142" y="752" width="130" height="70"/>
+                                <rect key="frame" x="142" y="698" width="130" height="70"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="FgI-OC-lKu"/>
@@ -94,11 +97,11 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="cQP-TT-ptf" kind="presentation" modalPresentationStyle="fullScreen" id="d76-Ts-tNU"/>
+                                    <action selector="stopButtonTapped" destination="RPL-gm-wn2" eventType="touchUpInside" id="8bu-sa-dNm"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JFi-7E-LNv">
-                                <rect key="frame" x="15" y="667" width="384" height="50"/>
+                                <rect key="frame" x="15" y="613" width="384" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9A4-ed-uH1">
                                         <rect key="frame" x="0.0" y="0.0" width="88.5" height="50"/>
@@ -135,7 +138,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選択中の色：青" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETL-ZC-Mc3">
-                                <rect key="frame" x="146.5" y="724" width="121.5" height="21"/>
+                                <rect key="frame" x="146.5" y="670" width="121.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -174,6 +177,7 @@
                     <connections>
                         <outlet property="label" destination="ETL-ZC-Mc3" id="VgI-w8-yGu"/>
                         <outlet property="mapView" destination="Uh2-QB-ryW" id="Fcn-ZW-Xhk"/>
+                        <segue destination="cQP-TT-ptf" kind="presentation" identifier="toEditView" id="tUh-Um-AMm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3na-Z9-PM6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -185,17 +189,17 @@
             <objects>
                 <viewController id="cQP-TT-ptf" customClass="EditViewController" customModule="MapRecord" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KPK-Dl-FpS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SWA-fP-dIu">
-                                <rect key="frame" x="0.0" y="103" width="414" height="549"/>
+                                <rect key="frame" x="0.0" y="59" width="414" height="539"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Ddn-3P-5jG" appends="YES" id="cJj-8m-8Ao"/>
                                 </connections>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="編集" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgS-LH-C5A">
-                                <rect key="frame" x="157" y="59" width="100" height="29"/>
+                                <rect key="frame" x="157" y="15" width="100" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="W8W-ST-p8k"/>
                                 </constraints>
@@ -204,7 +208,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oy0-d0-UUL">
-                                <rect key="frame" x="142" y="752" width="130" height="70"/>
+                                <rect key="frame" x="142" y="698" width="130" height="70"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="CpU-Qw-bJV"/>

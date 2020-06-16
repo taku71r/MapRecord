@@ -17,12 +17,16 @@ class EditViewController: UIViewController, MKMapViewDelegate, UIGestureRecogniz
     @IBOutlet var longPressGesRec: UILongPressGestureRecognizer!
     var pointAno: MKPointAnnotation = MKPointAnnotation()
     
+    var coordinateArrayE : [CLLocationCoordinate2D] = []
+    var colorNumberArrayE : [Int] = []
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         initMap()
+        print(coordinateArrayE)
         
         
     }

@@ -14,9 +14,9 @@ class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     
     @IBOutlet var mapView: MKMapView!
     var locManager: CLLocationManager!
-    var lonArray: [Double] = [0]
-    var latArray: [Double] = [0]
-    var colorNumber = 1
+    var coordinateArray: [CLLocationCoordinate2D] = []
+    var colorNumber = 0
+    var colorNumberArray: [Int] = []
     @IBOutlet var label : UILabel!
     //var lon: Double = 0
     //var lat: Double = 0
@@ -36,6 +36,7 @@ class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         
         //self.start()
         locManager.startUpdatingLocation()
+        locManager.distanceFilter = 50
         
        
     }
@@ -44,25 +45,24 @@ class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManag
    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]) {
         //決められた間隔ごとに現在地を取得
-            let lon = (locations.last?.coordinate.longitude)!
-            let lat = (locations.last?.coordinate.latitude)!
+            let coordinateNow = (locations.last?.coordinate)!
             
             //それぞれ配列に追加していく
-            lonArray.append(lon)
-            latArray.append(lat)
-            //配列の現在の個数をarrayNumberで表す（-1した数にする）
-            let arrayNumber = lonArray.count - 1
+            coordinateArray.append(coordinateNow)
+            
+            //配列の現在の個数をarrayNumberで表す
+            let arrayNumber = coordinateArray.count
             
             //確認用
             //print(lon)
             //print(lat)
-            print(lonArray)
+            print(coordinateArray)
             //print(arrayNumber)
             
             //現在の座標データをcoordinate1に、一個前の座標データをcoordinate2にする
             if arrayNumber > 1 {
-                let coordinate1 = CLLocationCoordinate2D(latitude: latArray[arrayNumber], longitude: lonArray[arrayNumber])
-                let coordinate2 = CLLocationCoordinate2D(latitude: latArray[arrayNumber - 1], longitude: lonArray[arrayNumber - 1])
+                let coordinate1 = coordinateArray[arrayNumber - 1]
+                let coordinate2 = coordinateArray[arrayNumber - 2]
                 //polylineを引くcoordinatesを設定する。
                 let coordinates = [coordinate1, coordinate2]
                 let PolyLine: MKPolyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
@@ -81,15 +81,19 @@ class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             let polylineRenderer = MKPolylineRenderer(polyline: polyline)
             if colorNumber == 0 {
                 polylineRenderer.strokeColor = .blue
+                colorNumberArray.append(0)
             } else if colorNumber == 1 {
                 polylineRenderer.strokeColor = .red
+                colorNumberArray.append(1)
             } else if colorNumber == 2 {
                 polylineRenderer.strokeColor = .green
+                colorNumberArray.append(2)
             } else if colorNumber == 3 {
                 polylineRenderer.strokeColor = .gray
+                colorNumberArray.append(3)
             }
-            
-            polylineRenderer.lineWidth = 10.0
+            print(colorNumberArray)
+            polylineRenderer.lineWidth = 2.0
             return polylineRenderer
         }
         return MKOverlayRenderer()
@@ -130,7 +134,19 @@ class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManag
     @IBAction func stopUpdating() {
         locManager.stopUpdatingLocation()
     }
-    
+    @IBAction func stopButtonTapped() {
+        performSegueToEdit()
+    }
+    func performSegueToEdit() {
+        performSegue(withIdentifier: "toEditView", sender: nil)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toResultView" {
+            let editViewController = segue.destination as! EditViewController
+            editViewController.coordinateArrayE = self.coordinateArray
+            editViewController.colorNumberArrayE = self.colorNumberArray
+        }
+    }
 
     /*
     // MARK: - Navigation
