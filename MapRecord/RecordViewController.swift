@@ -53,11 +53,9 @@ class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManag
             //配列の現在の個数をarrayNumberで表す
             let arrayNumber = coordinateArray.count
             
-            //確認用
-            //print(lon)
-            //print(lat)
+            
             print(coordinateArray)
-            //print(arrayNumber)
+            
             
             //現在の座標データをcoordinate1に、一個前の座標データをcoordinate2にする
             if arrayNumber > 1 {
