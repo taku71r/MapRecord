@@ -10,26 +10,34 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class EditViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
+class EditViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet var mapView: MKMapView!
-    var locManager:CLLocationManager!
     @IBOutlet var longPressGesRec: UILongPressGestureRecognizer!
     var pointAno: MKPointAnnotation = MKPointAnnotation()
+    @IBOutlet var testlabel: UILabel!
     
     var coordinateArrayE : [CLLocationCoordinate2D] = []
     var colorNumberArrayE : [Int] = []
+    //var arrayNumberE = coordinateArrayE.count
+    
+    
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        mapView.delegate = self
         initMap()
-        print(coordinateArrayE)
+        
+        print("数字: \(colorNumberArrayE)")
+        
         
         
     }
+    
     func initMap() {
        var region:MKCoordinateRegion = mapView.region
        region.span.latitudeDelta = 0.1

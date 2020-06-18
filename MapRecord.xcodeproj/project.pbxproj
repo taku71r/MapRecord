@@ -15,6 +15,7 @@
 		FD43244824791C6C0051D98C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD43244624791C6C0051D98C /* LaunchScreen.storyboard */; };
 		FD43245324791C6C0051D98C /* MapRecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD43245224791C6C0051D98C /* MapRecordTests.swift */; };
 		FD43245E24791C6C0051D98C /* MapRecordUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD43245D24791C6C0051D98C /* MapRecordUITests.swift */; };
+		FD5FFF3A249AE0C5000ACFF8 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5FFF39249AE0C5000ACFF8 /* ListTableViewCell.swift */; };
 		FDA05C622488A85800ACF239 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA05C612488A85800ACF239 /* RecordViewController.swift */; };
 		FDA05C67248AF6C700ACF239 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA05C66248AF6C700ACF239 /* EditViewController.swift */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,7 @@
 		FD43245924791C6C0051D98C /* MapRecordUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapRecordUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD43245D24791C6C0051D98C /* MapRecordUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRecordUITests.swift; sourceTree = "<group>"; };
 		FD43245F24791C6C0051D98C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD5FFF39249AE0C5000ACFF8 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		FDA05C612488A85800ACF239 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		FDA05C642488DB9D00ACF239 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FDA05C66248AF6C700ACF239 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -107,13 +109,14 @@
 			children = (
 				FD43243B24791C680051D98C /* AppDelegate.swift */,
 				FD43243D24791C680051D98C /* SceneDelegate.swift */,
-				FD43243F24791C680051D98C /* ViewController.swift */,
 				FD43244124791C680051D98C /* Main.storyboard */,
 				FD43244424791C6C0051D98C /* Assets.xcassets */,
 				FD43244624791C6C0051D98C /* LaunchScreen.storyboard */,
 				FD43244924791C6C0051D98C /* Info.plist */,
+				FD43243F24791C680051D98C /* ViewController.swift */,
 				FDA05C612488A85800ACF239 /* RecordViewController.swift */,
 				FDA05C66248AF6C700ACF239 /* EditViewController.swift */,
+				FD5FFF39249AE0C5000ACFF8 /* ListTableViewCell.swift */,
 			);
 			path = MapRecord;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				FD43243C24791C680051D98C /* AppDelegate.swift in Sources */,
 				FD43243E24791C680051D98C /* SceneDelegate.swift in Sources */,
 				FDA05C622488A85800ACF239 /* RecordViewController.swift in Sources */,
+				FD5FFF3A249AE0C5000ACFF8 /* ListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

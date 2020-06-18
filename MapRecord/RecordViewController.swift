@@ -36,7 +36,7 @@ class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         
         //self.start()
         locManager.startUpdatingLocation()
-        locManager.distanceFilter = 50
+        locManager.distanceFilter = 10
         
        
     }
@@ -131,10 +131,9 @@ class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         colorNumber = 3
         label.text = "選択中の色：グレー"
     }
-    @IBAction func stopUpdating() {
-        locManager.stopUpdatingLocation()
-    }
+   
     @IBAction func stopButtonTapped() {
+        locManager.stopUpdatingLocation()
         performSegueToEdit()
     }
     func performSegueToEdit() {
