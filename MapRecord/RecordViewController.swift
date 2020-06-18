@@ -67,9 +67,6 @@ class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManag
                 DispatchQueue.main.async {
                     self.mapView.addOverlay(PolyLine)
                 }
-                
-                
-                
                 mapView.userTrackingMode = .follow
                 
             }
