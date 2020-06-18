@@ -10,11 +10,10 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class EditViewController: UIViewController, MKMapViewDelegate, UIGestureRecognizerDelegate {
+class EditViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet var mapView: MKMapView!
-    @IBOutlet var longPressGesRec: UILongPressGestureRecognizer!
-    var pointAno: MKPointAnnotation = MKPointAnnotation()
+    
     @IBOutlet var testlabel: UILabel!
     
     var coordinateArrayE : [CLLocationCoordinate2D] = []
@@ -33,7 +32,9 @@ class EditViewController: UIViewController, MKMapViewDelegate, UIGestureRecogniz
         initMap()
         
         print("数字: \(colorNumberArrayE)")
-        
+        print(coordinateArrayE.count)
+        print(colorNumberArrayE.count)
+        writeLine()
         
         
     }
@@ -46,21 +47,10 @@ class EditViewController: UIViewController, MKMapViewDelegate, UIGestureRecogniz
        
        
        }
-    @IBAction func mapViewDidLongPress(_ sender: UILongPressGestureRecognizer) {
+    func writeLine() {
         
-        //ロングタップ開始
-        if sender.state == .began {
-        }
-        //ロングタップ完了(手を離した)
-        else if sender.state == .ended {
-            let tapPoint = sender.location(in: view)
-            let center = mapView.convert(tapPoint, toCoordinateFrom: mapView)
-            
-            
-            pointAno.coordinate = center
-            mapView.addAnnotation(pointAno)
-        }
     }
+    
     
 
     /*

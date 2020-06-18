@@ -140,7 +140,7 @@ class RecordViewController: UIViewController, MKMapViewDelegate, CLLocationManag
         performSegue(withIdentifier: "toEditView", sender: nil)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toResultView" {
+        if segue.identifier == "toEditView" {
             let editViewController = segue.destination as! EditViewController
             editViewController.coordinateArrayE = self.coordinateArray
             editViewController.colorNumberArrayE = self.colorNumberArray
